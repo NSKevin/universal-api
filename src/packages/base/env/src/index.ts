@@ -13,6 +13,7 @@ declare const navigator: {
   userAgent?: string;
   swuserAgent?: string;
 };
+declare const NativeJS: any;
 
 export const isWeb = typeof window !== 'undefined' && 'onload' in window;
 export const isNode = typeof process !== 'undefined' && !!(process.versions && process.versions.node);
@@ -36,6 +37,8 @@ const ua = typeof navigator === 'object' ? (navigator.userAgent || navigator.swu
 export const isWindVane = /.+AliApp\((\w+)\/((?:\d+\.)+\d+)\).* .*(WindVane)(?:\/((?:\d+\.)+\d+))?.*/.test(ua)
   && isWeb && typeof WindVane !== 'undefined' && typeof WindVane.call !== 'undefined';
 
+export const isNativeJS = typeof NativeJS !== 'undefined' && NativeJS.env.platform !== 'Web';
+
 export default {
   isWeb,
   isNode,
@@ -50,4 +53,5 @@ export default {
   isPHA,
   isWindVane,
   isFRM,
+  isNativeJS
 };
